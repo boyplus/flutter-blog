@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:test_existing/models/blog.dart';
 import 'package:test_existing/screens/blog.dart';
@@ -6,6 +8,10 @@ import 'package:test_existing/utils/text_style.dart';
 class BlogWidget extends StatelessWidget {
   final Blog blog;
   const BlogWidget({required this.blog, Key? key}) : super(key: key);
+
+  String getContentText(String content) {
+    return content.length > 40 ? content.substring(0, 40) + '...' : content;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class BlogWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(blog.title, style: headerTextStyle),
-                Text(blog.content)
+                Text(getContentText(blog.content))
               ],
             ),
           ),
